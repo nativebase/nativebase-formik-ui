@@ -1,0 +1,22 @@
+{
+  "name": "nativebase-formik-ui-example",
+  "displayName": "NativebaseFormikUi Example",
+  "expo": {
+    "name": "nativebase-formik-ui-example",
+    "slug": "nativebase-formik-ui-example",
+    "description": "Example app for nativebase-formik-ui",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
