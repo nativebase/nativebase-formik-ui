@@ -3,3 +3,5 @@ export default {
     return Promise.resolve(a * b);
   },
 };
+
+export * from './components';
