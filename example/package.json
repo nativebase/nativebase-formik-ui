@@ -2,7 +2,7 @@
   "name": "nativebase-formik-ui-example",
   "description": "Example app for nativebase-formik-ui",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "main": "index",
   "scripts": {
     "android": "expo start --android",
