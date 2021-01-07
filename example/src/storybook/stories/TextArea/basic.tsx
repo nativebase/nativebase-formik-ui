@@ -5,9 +5,9 @@ import {
   ResetButton,
   Box,
   ButtonGroup,
-} from 'nativebase-formik-ui';
+} from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading } from 'native-base';
+import { Heading, Icon } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -29,7 +29,8 @@ export default function () {
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Tell us about yourself 🥷</Heading>
+          <Icon name="home" />
+          <Heading>Tell us about yourself</Heading>
           <TextArea
             name="bio"
             h="100"

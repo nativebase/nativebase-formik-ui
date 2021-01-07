@@ -22,7 +22,7 @@ import {
   NumberDecrementStepper,
   Box,
   Text,
-} from 'nativebase-formik-ui';
+} from '@native-base/formik-ui';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
