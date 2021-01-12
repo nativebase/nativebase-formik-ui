@@ -1,8 +1,7 @@
 import { Input as NBInput, IInputProps } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import React, { FC } from 'react';
-import type { BaseProps } from '../props';
-import { FormControl } from '../form-control';
+import type { BaseProps } from '../../props';
 export type InputProps = BaseProps & { inputProps?: IInputProps };
 
 export const Input: FC<InputProps> = (props: InputProps) => {
@@ -10,18 +9,16 @@ export const Input: FC<InputProps> = (props: InputProps) => {
   const [field] = useField(name);
   const { handleChange, handleBlur, setFieldTouched }: any = useFormikContext();
   return (
-    <FormControl name={name} {...rest}>
-      <NBInput
-        value={field.value}
-        {...inputProps}
-        {...rest}
-        onChangeText={handleChange(name)}
-        onBlur={() => {
-          setFieldTouched(name);
-          handleBlur(name);
-        }}
-      />
-    </FormControl>
+    <NBInput
+      value={field.value}
+      {...inputProps}
+      {...rest}
+      onChangeText={handleChange(name)}
+      onBlur={() => {
+        setFieldTouched(name);
+        handleBlur(name);
+      }}
+    />
   );
 };
 
