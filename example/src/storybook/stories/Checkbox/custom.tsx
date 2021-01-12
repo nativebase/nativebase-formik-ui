@@ -6,7 +6,7 @@ import {
   ResetButton,
   Box,
   ButtonGroup,
-} from 'nativebase-formik-ui';
+} from '@native-base/formik-ui';
 import { Formik } from 'formik';
 import { Heading, FormControl, FormErrorMessage, FormLabel } from 'native-base';
 import * as Yup from 'yup';

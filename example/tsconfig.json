@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@native-base/formik-ui": ["./src/index"]
+      "@native-base/formik-ui": ["../src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

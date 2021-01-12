@@ -6,7 +6,7 @@ import {
   Box,
   ButtonGroup,
   Icon,
-} from 'nativebase-formik-ui';
+} from '@native-base/formik-ui';
 import { Formik } from 'formik';
 import { Heading } from 'native-base';
 import * as Yup from 'yup';
