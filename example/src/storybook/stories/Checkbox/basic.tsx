@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  CheckboxSingular,
+  CheckboxControl,
   Text,
   SubmitButton,
   ResetButton,
@@ -32,13 +32,13 @@ export default function () {
     >
       {({ values, errors }) => (
         <Box>
-          <Heading>Next Steps</Heading>
-          <CheckboxSingular name="tnc" mt={4}>
+          <Heading>Checkbox FormControl</Heading>
+          <CheckboxControl name="tnc" label="Checkbox Control Label" mt={4}>
             <Text mx={2}>Terms and Conditions</Text>
-          </CheckboxSingular>
-          <CheckboxSingular name="newsletter" mt={4}>
+          </CheckboxControl>
+          <CheckboxControl name="newsletter" mt={4}>
             <Text mx={2}>Subscribe to Our Newsletter</Text>
-          </CheckboxSingular>
+          </CheckboxControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

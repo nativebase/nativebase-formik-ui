@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  Radio,
-  RadioGroupControl,
-  HStack,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  Slider,
   SubmitButton,
   ResetButton,
   Box,
@@ -10,11 +11,13 @@ import {
   Text,
 } from 'nativebase-formik-ui';
 import { Formik } from 'formik';
-import { Heading } from 'native-base';
+import { Heading, FormControl, FormLabel, FormErrorMessage } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  color: Yup.string().required(),
+  rating: Yup.number()
+    .required()
+    .min(4, ({ min }) => `Come on we deserve at least ${min}`),
 });
 
 export default function () {
@@ -25,34 +28,25 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        color: '',
+        rating: 0,
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Let's Try to Know You More.</Heading>
-          <RadioGroupControl
-            mt={4}
-            name="color"
-            label="What's your faviourate Color ?"
-          >
-            <HStack space={4}>
-              <Radio value="#ff0000">
-                <Text ml={2}>Red</Text>
-              </Radio>
-              <Radio value="#00ff00">
-                <Text ml={2}>Green</Text>
-              </Radio>
-              <Radio value="#0000ff">
-                <Text ml={2}>Blue</Text>
-              </Radio>
-              <Radio value="other">
-                <Text ml={2}>Other</Text>
-              </Radio>
-            </HStack>
-          </RadioGroupControl>
+          <Heading>Rate NativeBase V3 Formik Integration (0-10) 😬</Heading>
+          <Text>You have rated us {Math.floor(values.rating)}</Text>
+          <FormControl isInvalid={errors.rating}>
+            <FormLabel>Slider Label</FormLabel>
+            <Slider name="rating" colorScheme="cyan" min={0} max={10}>
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <FormErrorMessage>{errors.rating}</FormErrorMessage>
+          </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

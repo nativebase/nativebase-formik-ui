@@ -10,7 +10,7 @@ import {
   ButtonGroup,
 } from 'nativebase-formik-ui';
 import { Formik } from 'formik';
-import { Heading } from 'native-base';
+import { Heading, FormLabel, FormControl, FormErrorMessage } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -18,6 +18,7 @@ const validationSchema = Yup.object().shape({
     18,
     ({ min }) => `Age must be at least ${min} years old`
   ),
+  // .required('Please specify your age, it is important.'),
 });
 
 export default function () {
@@ -36,12 +37,16 @@ export default function () {
       {({ values, errors }) => (
         <Box mt={4}>
           <Heading>Let's check if you are eligible.</Heading>
-          <NumberInput mt={4} name="age" label="Age ?">
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
+          <FormControl mt={4} isInvalid={errors.age}>
+            <FormLabel>What's your Age?</FormLabel>
+            <NumberInput mt={2} name="age">
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <FormErrorMessage>{errors.age}</FormErrorMessage>
+          </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

@@ -1,20 +1,19 @@
 import React from 'react';
 import {
-  Radio,
-  RadioGroupControl,
-  HStack,
+  Checkbox,
+  Text,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
-  Text,
 } from 'nativebase-formik-ui';
 import { Formik } from 'formik';
-import { Heading } from 'native-base';
+import { Heading, FormControl, FormErrorMessage, FormLabel } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  color: Yup.string().required(),
+  tnc: Yup.boolean().equals([true], 'Terms and Condition must be checked !'),
+  newsletter: Yup.boolean(),
 });
 
 export default function () {
@@ -25,34 +24,28 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        color: '',
+        tnc: true,
+        newsletter: false,
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
       {({ values, errors }) => (
-        <Box mt={4}>
-          <Heading>Let's Try to Know You More.</Heading>
-          <RadioGroupControl
-            mt={4}
-            name="color"
-            label="What's your faviourate Color ?"
-          >
-            <HStack space={4}>
-              <Radio value="#ff0000">
-                <Text ml={2}>Red</Text>
-              </Radio>
-              <Radio value="#00ff00">
-                <Text ml={2}>Green</Text>
-              </Radio>
-              <Radio value="#0000ff">
-                <Text ml={2}>Blue</Text>
-              </Radio>
-              <Radio value="other">
-                <Text ml={2}>Other</Text>
-              </Radio>
-            </HStack>
-          </RadioGroupControl>
+        <Box>
+          <Heading>Custom Checkbox using FormControl</Heading>
+          <FormControl mt={4} isRequired isInvalid={errors.tnc}>
+            <FormLabel>Custom Label</FormLabel>
+            <Checkbox name="tnc" mt={4}>
+              <Text mx={2}>Terms and Conditions</Text>
+            </Checkbox>
+            <FormErrorMessage>{errors.tnc}</FormErrorMessage>
+          </FormControl>
+          <FormControl>
+            <Checkbox name="newsletter" mt={4}>
+              <Text mx={2}>Subscribe to Our Newsletter</Text>
+            </Checkbox>
+            <FormErrorMessage>{errors.newsletter}</FormErrorMessage>
+          </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

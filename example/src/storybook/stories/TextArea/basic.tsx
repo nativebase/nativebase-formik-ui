@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  TextArea,
+  TextAreaControl,
   SubmitButton,
   ResetButton,
   Box,
@@ -30,12 +30,13 @@ export default function () {
       {({ values, errors }) => (
         <Box mt={4}>
           <Heading>Tell us about yourself 🥷</Heading>
-          <TextArea
+          <TextAreaControl
             name="bio"
             h="100"
             mt={4}
             label="Describe You"
             placeholder="About me..."
+            isRequired
           />
           <Box pb={4} />
           <ButtonGroup spacing={6}>

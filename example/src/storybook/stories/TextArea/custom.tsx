@@ -1,20 +1,17 @@
 import React from 'react';
 import {
-  Radio,
-  RadioGroupControl,
-  HStack,
+  TextArea,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
-  Text,
 } from 'nativebase-formik-ui';
 import { Formik } from 'formik';
-import { Heading } from 'native-base';
+import { Heading, FormControl, FormLabel, FormErrorMessage } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  color: Yup.string().required(),
+  bio: Yup.string().required(),
 });
 
 export default function () {
@@ -25,34 +22,19 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        color: '',
+        bio: '',
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Let's Try to Know You More.</Heading>
-          <RadioGroupControl
-            mt={4}
-            name="color"
-            label="What's your faviourate Color ?"
-          >
-            <HStack space={4}>
-              <Radio value="#ff0000">
-                <Text ml={2}>Red</Text>
-              </Radio>
-              <Radio value="#00ff00">
-                <Text ml={2}>Green</Text>
-              </Radio>
-              <Radio value="#0000ff">
-                <Text ml={2}>Blue</Text>
-              </Radio>
-              <Radio value="other">
-                <Text ml={2}>Other</Text>
-              </Radio>
-            </HStack>
-          </RadioGroupControl>
+          <Heading>Tell us about yourself 🥷</Heading>
+          <FormControl mt={4} isInvalid={errors.bio} isRequired>
+            <FormLabel>Describe You</FormLabel>
+            <TextArea name="bio" h="100" mt={2} placeholder="About me..." />
+            <FormErrorMessage>{errors.bio}</FormErrorMessage>
+          </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

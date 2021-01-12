@@ -1,19 +1,18 @@
 import React from 'react';
 import {
-  SelectControl,
-  Select,
-  Icon,
+  Switch,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
+  Icon,
 } from 'nativebase-formik-ui';
 import { Formik } from 'formik';
-import { Heading } from 'native-base';
+import { Heading, FormControl, FormLabel, FormErrorMessage } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  language: Yup.string().required(),
+  switchon: Yup.boolean().equals([true]),
 });
 
 export default function () {
@@ -24,7 +23,7 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        language: '',
+        switchon: false,
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
@@ -32,30 +31,18 @@ export default function () {
       {({ values, errors }) => (
         <Box mt={4}>
           <Heading>
-            {values.language === ''
-              ? 'Please Tell Your Faviorate Programming Language'
-              : 'You said you love ' + values.language + ' 👌🏻'}
+            Light is Switched {values.switchon ? 'On ' : 'Off '}
+            <Icon
+              name={values.switchon ? 'light-up' : 'md-moon'}
+              type={values.switchon ? 'Entypo' : 'Ionicons'}
+              size={6}
+            />
           </Heading>
-          <SelectControl
-            mt={4}
-            name="language"
-            label="Pick language"
-            placeholder="Pick language"
-            width={150}
-            selectedItemBg={'teal.400'}
-            dropdownOpenIcon={
-              <Icon name="arrow-drop-up" type="MaterialIcons" size={6} />
-            }
-            dropdownCloseIcon={
-              <Icon name="arrow-drop-down" type="MaterialIcons" size={6} />
-            }
-          >
-            <Select.Item label="JavaScript" value="js" />
-            <Select.Item label="C++" value="cpp" />
-            <Select.Item label="Python" value="py" />
-            <Select.Item label="TypeScript" value="ts" />
-            <Select.Item label="Java" value="java" />
-          </SelectControl>
+          <FormControl mt={4} isInvalid={errors.switchon}>
+            <FormLabel>Toggle Switch</FormLabel>
+            <Switch mt={2} name="switchon" label="Toggle Switch" />
+            <FormErrorMessage>{errors.switchon}</FormErrorMessage>
+          </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>
