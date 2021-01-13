@@ -1,24 +1,19 @@
 import React from 'react';
 import {
-  NumberInput,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  Checkbox,
+  Text,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormLabel, FormControl, FormErrorMessage } from 'native-base';
+import { Heading, FormControl, FormErrorMessage, FormLabel } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  age: Yup.number().min(
-    18,
-    ({ min }) => `Age must be at least ${min} years old`
-  ),
-  // .required('Please specify your age, it is important.'),
+  tnc: Yup.boolean().equals([true], 'Terms and Condition must be checked !'),
+  newsletter: Yup.boolean(),
 });
 
 export default function () {
@@ -29,23 +24,27 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        age: 0,
+        tnc: true,
+        newsletter: false,
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
       {({ values, errors }) => (
-        <Box mt={4}>
-          <Heading>Let's check if you are eligible.</Heading>
-          <FormControl mt={4} isInvalid={errors.age}>
-            <FormLabel>What's your Age?</FormLabel>
-            <NumberInput mt={2} name="age">
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <FormErrorMessage>{errors.age}</FormErrorMessage>
+        <Box>
+          <Heading>Custom Checkbox using FormControl</Heading>
+          <FormControl mt={4} isRequired isInvalid={errors.tnc}>
+            <FormLabel>Custom Label</FormLabel>
+            <Checkbox name="tnc" mt={4}>
+              <Text mx={2}>Terms and Conditions</Text>
+            </Checkbox>
+            <FormErrorMessage>{errors.tnc}</FormErrorMessage>
+          </FormControl>
+          <FormControl>
+            <Checkbox name="newsletter" mt={4}>
+              <Text mx={2}>Subscribe to Our Newsletter</Text>
+            </Checkbox>
+            <FormErrorMessage>{errors.newsletter}</FormErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

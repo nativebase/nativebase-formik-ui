@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  SelectControl,
+  SelectFormik,
   Select,
   Icon,
   SubmitButton,
@@ -9,7 +9,7 @@ import {
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading } from 'native-base';
+import { Heading, FormControl, FormErrorMessage } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -36,26 +36,28 @@ export default function () {
               ? 'Please Tell Your Faviorate Programming Language'
               : 'You said you love ' + values.language + ' 👌🏻'}
           </Heading>
-          <SelectControl
-            mt={4}
-            name="language"
-            label="Pick language"
-            placeholder="Pick language"
-            width={150}
-            selectedItemBg={'teal.400'}
-            dropdownOpenIcon={
-              <Icon name="arrow-drop-up" type="MaterialIcons" size={6} />
-            }
-            dropdownCloseIcon={
-              <Icon name="arrow-drop-down" type="MaterialIcons" size={6} />
-            }
-          >
-            <Select.Item label="JavaScript" value="js" />
-            <Select.Item label="C++" value="cpp" />
-            <Select.Item label="Python" value="py" />
-            <Select.Item label="TypeScript" value="ts" />
-            <Select.Item label="Java" value="java" />
-          </SelectControl>
+          <FormControl mt={4} isInvalid={errors.language}>
+            <SelectFormik
+              name="language"
+              label="Pick language"
+              placeholder="Pick language"
+              width={150}
+              selectedItemBg={'teal.400'}
+              dropdownOpenIcon={
+                <Icon name="arrow-drop-up" type="MaterialIcons" size={6} />
+              }
+              dropdownCloseIcon={
+                <Icon name="arrow-drop-down" type="MaterialIcons" size={6} />
+              }
+            >
+              <Select.Item label="JavaScript" value="js" />
+              <Select.Item label="C++" value="cpp" />
+              <Select.Item label="Python" value="py" />
+              <Select.Item label="TypeScript" value="ts" />
+              <Select.Item label="Java" value="java" />
+            </SelectFormik>
+            <FormErrorMessage>{errors.language}</FormErrorMessage>
+          </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

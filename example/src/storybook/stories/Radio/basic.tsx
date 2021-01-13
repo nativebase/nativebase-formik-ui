@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Radio,
-  RadioGroup,
+  RadioGroupControl,
   HStack,
   SubmitButton,
   ResetButton,
@@ -33,7 +33,7 @@ export default function () {
       {({ values, errors }) => (
         <Box mt={4}>
           <Heading>Let's Try to Know You More.</Heading>
-          <RadioGroup
+          <RadioGroupControl
             mt={4}
             name="color"
             label="What's your faviourate Color ?"
@@ -52,7 +52,7 @@ export default function () {
                 <Text ml={2}>Other</Text>
               </Radio>
             </HStack>
-          </RadioGroup>
+          </RadioGroupControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

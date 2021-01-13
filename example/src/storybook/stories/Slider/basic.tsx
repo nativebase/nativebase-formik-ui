@@ -3,7 +3,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  Slider,
+  SliderControl,
   SubmitButton,
   ResetButton,
   Box,
@@ -37,12 +37,19 @@ export default function () {
         <Box mt={4}>
           <Heading>Rate NativeBase V3 Formik Integration (0-10) 😬</Heading>
           <Text>You have rated us {Math.floor(values.rating)}</Text>
-          <Slider name="rating" colorScheme="cyan" min={0} max={10}>
+          <SliderControl
+            name="rating"
+            label="Slider Label"
+            mt={4}
+            colorScheme="cyan"
+            min={0}
+            max={10}
+          >
             <SliderTrack>
               <SliderFilledTrack />
             </SliderTrack>
             <SliderThumb />
-          </Slider>
+          </SliderControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

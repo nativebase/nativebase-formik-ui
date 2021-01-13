@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  NumberInput,
+  NumberInputControl,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
@@ -10,15 +10,13 @@ import {
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormLabel, FormControl, FormErrorMessage } from 'native-base';
+import { Heading } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  age: Yup.number().min(
-    18,
-    ({ min }) => `Age must be at least ${min} years old`
-  ),
-  // .required('Please specify your age, it is important.'),
+  age: Yup.number()
+    .min(18, ({ min }) => `Age must be at least ${min} years old`)
+    .required('Please specify your age, it is important.'),
 });
 
 export default function () {
@@ -37,16 +35,12 @@ export default function () {
       {({ values, errors }) => (
         <Box mt={4}>
           <Heading>Let's check if you are eligible.</Heading>
-          <FormControl mt={4} isInvalid={errors.age}>
-            <FormLabel>What's your Age?</FormLabel>
-            <NumberInput mt={2} name="age">
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <FormErrorMessage>{errors.age}</FormErrorMessage>
-          </FormControl>
+          <NumberInputControl mt={4} name="age" label="Age ?">
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInputControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

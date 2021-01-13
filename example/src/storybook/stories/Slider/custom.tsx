@@ -1,24 +1,23 @@
 import React from 'react';
 import {
-  NumberInput,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  Slider,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
+  Text,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormLabel, FormControl, FormErrorMessage } from 'native-base';
+import { Heading, FormControl, FormLabel, FormErrorMessage } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  age: Yup.number().min(
-    18,
-    ({ min }) => `Age must be at least ${min} years old`
-  ),
-  // .required('Please specify your age, it is important.'),
+  rating: Yup.number()
+    .required()
+    .min(4, ({ min }) => `Come on we deserve at least ${min}`),
 });
 
 export default function () {
@@ -29,23 +28,24 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        age: 0,
+        rating: 0,
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Let's check if you are eligible.</Heading>
-          <FormControl mt={4} isInvalid={errors.age}>
-            <FormLabel>What's your Age?</FormLabel>
-            <NumberInput mt={2} name="age">
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <FormErrorMessage>{errors.age}</FormErrorMessage>
+          <Heading>Rate NativeBase V3 Formik Integration (0-10) 😬</Heading>
+          <Text>You have rated us {Math.floor(values.rating)}</Text>
+          <FormControl isInvalid={errors.rating}>
+            <FormLabel>Slider Label</FormLabel>
+            <Slider name="rating" colorScheme="cyan" min={0} max={10}>
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <FormErrorMessage>{errors.rating}</FormErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

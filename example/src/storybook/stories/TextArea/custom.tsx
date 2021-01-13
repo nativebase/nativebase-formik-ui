@@ -1,24 +1,17 @@
 import React from 'react';
 import {
-  NumberInput,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  TextArea,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormLabel, FormControl, FormErrorMessage } from 'native-base';
+import { Heading, FormControl, FormLabel, FormErrorMessage } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  age: Yup.number().min(
-    18,
-    ({ min }) => `Age must be at least ${min} years old`
-  ),
-  // .required('Please specify your age, it is important.'),
+  bio: Yup.string().required(),
 });
 
 export default function () {
@@ -29,23 +22,18 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        age: 0,
+        bio: '',
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Let's check if you are eligible.</Heading>
-          <FormControl mt={4} isInvalid={errors.age}>
-            <FormLabel>What's your Age?</FormLabel>
-            <NumberInput mt={2} name="age">
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <FormErrorMessage>{errors.age}</FormErrorMessage>
+          <Heading>Tell us about yourself 🥷</Heading>
+          <FormControl mt={4} isInvalid={errors.bio} isRequired>
+            <FormLabel>Describe You</FormLabel>
+            <TextArea name="bio" h="100" mt={2} placeholder="About me..." />
+            <FormErrorMessage>{errors.bio}</FormErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

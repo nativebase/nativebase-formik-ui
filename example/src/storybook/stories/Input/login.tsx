@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Input,
+  InputControl,
   SubmitButton,
   ResetButton,
   Box,
@@ -35,19 +35,21 @@ export default function () {
     >
       {({ values, errors }) => (
         <Box>
-          <Heading>Login</Heading>
-          <Input
+          <Heading>Login Form using FormControlled Input</Heading>
+          <InputControl
             mt={4}
             name="email"
             label="Email Address"
             placeholder="jane.doe@example.com"
+            isRequired
           />
-          <Input
+          <InputControl
             mt={4}
             name="password"
             label="Password"
             type="password"
             placeholder="MyPassword"
+            isRequired
           />
           <Box pb={4} />
           <ButtonGroup spacing={6}>

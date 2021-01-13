@@ -6,8 +6,8 @@ import {
 } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import React, { FC, ReactNode } from 'react';
-import type { BaseProps } from '../props';
-import { FormControl } from '../form-control';
+import type { BaseProps } from '../../props';
+import { FormControl } from '../../form-control';
 import {
   NumberInputStepper,
   NumberIncrementStepper,
@@ -21,23 +21,69 @@ export type NumberInputProps = BaseProps & {
   children?: ReactNode;
 };
 
-export const NumberInput: FC<NumberInputProps> = (props: NumberInputProps) => {
+export const NumberInputControl: FC<NumberInputProps> = (
+  props: NumberInputProps
+) => {
   const {
     name,
     label,
     children,
     numberInputProps,
     numberInputFieldProps,
+    m,
+    margin,
+    mt,
+    marginTop,
+    mb,
+    marginBottom,
+    mr,
+    marginRight,
+    ml,
+    marginLeft,
+    mx,
+    marginX,
+    my,
+    marginY,
+    position,
+    right,
+    left,
+    bottom,
+    top,
+    isRequired,
     ...rest
   } = props;
+  const layoutProps = {
+    m,
+    margin,
+    mt,
+    marginTop,
+    mb,
+    marginBottom,
+    mr,
+    marginRight,
+    ml,
+    marginLeft,
+    mx,
+    marginX,
+    my,
+    marginY,
+    position,
+    right,
+    left,
+    bottom,
+    top,
+    isRequired,
+  };
   const [field, { error }] = useField(name);
   const { handleChange } = useFormikContext();
+  const defaultProps = { mt: 2 };
 
   return (
-    <FormControl name={name} label={label} {...rest}>
+    <FormControl name={name} label={label} {...layoutProps}>
       <NBNumberInput
         value={field.value}
         onChange={handleChange(name)}
+        {...defaultProps}
         {...numberInputProps}
         {...rest}
       >
@@ -48,4 +94,4 @@ export const NumberInput: FC<NumberInputProps> = (props: NumberInputProps) => {
   );
 };
 export { NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper };
-export default NumberInput;
+export default NumberInputControl;

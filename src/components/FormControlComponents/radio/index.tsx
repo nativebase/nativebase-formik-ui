@@ -1,17 +1,16 @@
 import { RadioGroup as NBRadioGroup, IRadioGroupProps } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import React, { FC, ReactNode } from 'react';
-import type { BaseProps } from '../props';
-import { FormControl } from '../form-control';
+import type { BaseProps } from '../../props';
 import { Radio, HStack, VStack, Stack } from 'native-base';
 
-export type RadioGroupProps = BaseProps & {
+type RadioGroupProps = BaseProps & {
   radioGroupProps?: IRadioGroupProps;
   children: ReactNode;
 };
 
 export const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
-  const { name, label, radioGroupProps, children, ...rest } = props;
+  const { name, radioGroupProps, children, ...rest } = props;
   const [field] = useField(name);
   const { setFieldValue } = useFormikContext();
   const handleChange = (value: string) => {
@@ -19,16 +18,14 @@ export const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
   };
 
   return (
-    <FormControl name={name} label={label} {...rest}>
-      <NBRadioGroup
-        value={field.value}
-        onChange={handleChange}
-        {...radioGroupProps}
-        {...rest}
-      >
-        {children}
-      </NBRadioGroup>
-    </FormControl>
+    <NBRadioGroup
+      value={field.value}
+      onChange={handleChange}
+      {...radioGroupProps}
+      {...rest}
+    >
+      {children}
+    </NBRadioGroup>
   );
 };
 export { Radio, HStack, VStack, Stack };

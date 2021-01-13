@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  TextArea,
+  TextAreaControl,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, Icon } from 'native-base';
+import { Heading } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -29,14 +29,14 @@ export default function () {
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Icon name="home" />
-          <Heading>Tell us about yourself</Heading>
-          <TextArea
+          <Heading>Tell us about yourself 🥷</Heading>
+          <TextAreaControl
             name="bio"
             h="100"
             mt={4}
             label="Describe You"
             placeholder="About me..."
+            isRequired
           />
           <Box pb={4} />
           <ButtonGroup spacing={6}>
