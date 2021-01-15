@@ -1,6 +1,6 @@
 {
   "name": "@native-base/formik-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "NativeBase Formik Integration ",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
