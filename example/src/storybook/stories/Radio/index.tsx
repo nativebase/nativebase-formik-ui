@@ -8,5 +8,5 @@ import Custom from './custom';
 storiesOf('Radio', module)
   .addDecorator(withKnobs)
   .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic Radio Example', () => <Basic />)
-  .add('Custom FormControl Radio Example', () => <Custom />);
+  .add('Basic RadioGroupControl', () => <Basic />)
+  .add('Custom RadioGroup with FormControl', () => <Custom />);

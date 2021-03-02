@@ -8,7 +8,7 @@ import {
   Icon,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormControl, FormLabel, FormErrorMessage } from 'native-base';
+import { Heading, FormControl } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -39,9 +39,11 @@ export default function () {
             />
           </Heading>
           <FormControl mt={4} isInvalid={errors.switchon}>
-            <FormLabel>Toggle Switch</FormLabel>
+            <FormControl.Label>Toggle Switch</FormControl.Label>
             <Switch mt={2} name="switchon" label="Toggle Switch" />
-            <FormErrorMessage>{errors.switchon}</FormErrorMessage>
+            <FormControl.ErrorMessage>
+              {errors.switchon}
+            </FormControl.ErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

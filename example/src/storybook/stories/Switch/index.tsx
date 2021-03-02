@@ -8,5 +8,5 @@ import Custom from './custom';
 storiesOf('Switch', module)
   .addDecorator(withKnobs)
   .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic Switch Example', () => <Basic />)
-  .add('Custom FormControl Switch Example', () => <Custom />);
+  .add('Basic SwitchControl', () => <Basic />)
+  .add('Custom Switch with FormControl', () => <Custom />);

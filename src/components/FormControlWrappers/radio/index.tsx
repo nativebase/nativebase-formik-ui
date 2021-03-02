@@ -1,9 +1,10 @@
-import { RadioGroup as NBRadioGroup, IRadioGroupProps } from 'native-base';
+import type { IRadioGroupProps } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import React, { FC, ReactNode } from 'react';
 import type { BaseProps } from '../../props';
 import { FormControl } from '../../form-control';
 import { Radio, HStack, VStack, Stack } from 'native-base';
+import { getLayoutProps } from '../../../utils';
 
 export type RadioGroupProps = BaseProps & {
   radioGroupProps?: IRadioGroupProps;
@@ -13,73 +14,26 @@ export type RadioGroupProps = BaseProps & {
 export const RadioGroupControl: FC<RadioGroupProps> = (
   props: RadioGroupProps
 ) => {
-  const {
-    name,
-    label,
-    radioGroupProps,
-    children,
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-    ...rest
-  } = props;
-  const layoutProps = {
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-  };
+  const { name, label, radioGroupProps, children, ...rest } = props;
   const [field] = useField(name);
   const { setFieldValue } = useFormikContext();
   const handleChange = (value: string) => {
     setFieldValue(name, value);
   };
+  const [layoutProps, remainingProps] = getLayoutProps(rest);
   const defaultProps = { mt: 2 };
 
   return (
     <FormControl name={name} label={label} {...layoutProps}>
-      <NBRadioGroup
+      <Radio.Group
         value={field.value}
         onChange={handleChange}
         {...defaultProps}
         {...radioGroupProps}
-        {...rest}
+        {...remainingProps}
       >
         {children}
-      </NBRadioGroup>
+      </Radio.Group>
     </FormControl>
   );
 };

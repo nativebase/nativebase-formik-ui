@@ -7,7 +7,7 @@ import {
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormControl, FormErrorMessage, FormLabel } from 'native-base';
+import { Heading, FormControl } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -37,19 +37,23 @@ export default function () {
         <Box>
           <Heading>Login form using Custom FormControl</Heading>
           <FormControl mt={4} isRequired isInvalid={errors.email}>
-            <FormLabel color="teal.600">Email Address</FormLabel>
+            <FormControl.Label color="teal.600">
+              Email Address
+            </FormControl.Label>
             <Input name="email" mt={2} placeholder="jane.doe@example.com" />
-            <FormErrorMessage>{errors.email}</FormErrorMessage>
+            <FormControl.ErrorMessage>{errors.email}</FormControl.ErrorMessage>
           </FormControl>
           <FormControl mt={4} isRequired isInvalid={errors.password}>
-            <FormLabel color="orange.600">Password</FormLabel>
+            <FormControl.Label color="orange.600">Password</FormControl.Label>
             <Input
               name="password"
               type="password"
               mt={2}
               placeholder="MyPassword"
             />
-            <FormErrorMessage>{errors.password}</FormErrorMessage>
+            <FormControl.ErrorMessage>
+              {errors.password}
+            </FormControl.ErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

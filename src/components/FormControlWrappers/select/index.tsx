@@ -3,6 +3,7 @@ import { useField, useFormikContext } from 'formik';
 import React, { FC, ReactNode } from 'react';
 import type { BaseProps } from '../../props';
 import { FormControl } from '../../form-control';
+import { getLayoutProps } from '../../../utils';
 import { Select, Icon } from 'native-base';
 
 type SelectProps = BaseProps & {
@@ -11,57 +12,10 @@ type SelectProps = BaseProps & {
 };
 
 export const SelectControl: FC<SelectProps> = (props: SelectProps) => {
-  const {
-    name,
-    selectProps,
-    children,
-    label,
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-    ...rest
-  } = props;
-  const layoutProps = {
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-  };
+  const { name, selectProps, children, label, ...rest } = props;
   const [field] = useField(name);
   const { handleChange, setFieldTouched, handleBlur } = useFormikContext();
+  const [layoutProps, remainingProps] = getLayoutProps(rest);
   const defaultProps = { mt: 2 };
 
   return (
@@ -75,7 +29,7 @@ export const SelectControl: FC<SelectProps> = (props: SelectProps) => {
         }}
         {...defaultProps}
         {...selectProps}
-        {...rest}
+        {...remainingProps}
       >
         {children}
       </NBSelect>

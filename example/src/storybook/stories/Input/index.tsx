@@ -8,5 +8,5 @@ import Basic from './basic';
 storiesOf('Input', module)
   .addDecorator(withKnobs)
   .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Login Form Custom Form Control', () => <Basic />)
-  .add('Login Form FormControl Wrapped Input', () => <Login />);
+  .add('Login Form using InputControl', () => <Basic />)
+  .add('Login Form using Input with FormControl', () => <Login />);

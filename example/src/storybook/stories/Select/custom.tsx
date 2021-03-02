@@ -9,7 +9,7 @@ import {
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormControl, FormErrorMessage } from 'native-base';
+import { Heading, FormControl } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -33,11 +33,12 @@ export default function () {
         <Box mt={4}>
           <Heading>
             {values.language === ''
-              ? 'Please Tell Your Faviorate Programming Language'
+              ? 'Please Tell Your Favourite Programming Language'
               : 'You said you love ' + values.language + ' 👌🏻'}
           </Heading>
           <FormControl mt={4} isInvalid={errors.language}>
             <SelectFormik
+              variant="styled"
               name="language"
               label="Pick language"
               placeholder="Pick language"
@@ -56,7 +57,9 @@ export default function () {
               <Select.Item label="TypeScript" value="ts" />
               <Select.Item label="Java" value="java" />
             </SelectFormik>
-            <FormErrorMessage>{errors.language}</FormErrorMessage>
+            <FormControl.ErrorMessage>
+              {errors.language}
+            </FormControl.ErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

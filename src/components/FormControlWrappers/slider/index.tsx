@@ -3,8 +3,7 @@ import { useField, useFormikContext } from 'formik';
 import React, { FC, ReactNode } from 'react';
 import type { BaseProps } from '../../props';
 import { FormControl } from '../../form-control';
-
-import { SliderTrack, SliderFilledTrack, SliderThumb } from 'native-base';
+import { getLayoutProps } from '../../../utils';
 
 export type SliderProps = BaseProps & {
   sliderProps?: ISliderProps;
@@ -12,55 +11,8 @@ export type SliderProps = BaseProps & {
 };
 
 export const SliderControl: FC<SliderProps> = (props: SliderProps) => {
-  const {
-    name,
-    label,
-    children,
-    sliderProps,
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-    ...rest
-  } = props;
-  const layoutProps = {
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-  };
+  const { name, label, children, sliderProps, ...rest } = props;
+  const [layoutProps, remainingProps] = getLayoutProps(rest);
   const [field] = useField(name);
   const { setFieldValue } = useFormikContext();
   const defaultProps = { mt: 2 };
@@ -74,12 +26,11 @@ export const SliderControl: FC<SliderProps> = (props: SliderProps) => {
         }}
         {...defaultProps}
         {...sliderProps}
-        {...rest}
+        {...remainingProps}
       >
         {children}
       </NBSlider>
     </FormControl>
   );
 };
-export { SliderTrack, SliderFilledTrack, SliderThumb };
 export default SliderControl;

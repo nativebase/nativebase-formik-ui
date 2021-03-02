@@ -1,7 +1,9 @@
-import { PinInput, IPinInputProps, Box, Text } from 'native-base';
+import { PinInput, IPinInputProps } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import React, { FC, ReactNode } from 'react';
-import type { BaseProps } from '../props';
+import type { BaseProps } from '../../props';
+import { FormControl } from '../../form-control';
+import { getLayoutProps } from '../../../utils';
 
 export type PinInputControlProps = BaseProps & {
   pinInputProps?: IPinInputProps;
@@ -12,24 +14,24 @@ export type PinInputControlProps = BaseProps & {
 export const PinInputControl: FC<PinInputControlProps> = (
   props: PinInputControlProps
 ) => {
-  const { name, children, pinInputProps, ...rest } = props;
-  const [field, { error }] = useField(name);
+  const { name, children, label, pinInputProps, ...rest } = props;
+  const [field] = useField(name);
   const { handleChange } = useFormikContext();
+  const [layoutProps, remainingProps] = getLayoutProps(rest);
+  const defaultProps = { mt: 2 };
 
   return (
-    <Box>
+    <FormControl name={name} label={label} {...layoutProps}>
       <PinInput
         value={field.value}
         {...pinInputProps}
+        {...defaultProps}
         onChange={handleChange(name)}
-        {...pinInputProps}
-        {...rest}
+        {...remainingProps}
       >
         {children}
       </PinInput>
-      Field.value = {field.value}
-      {error && <Text color="red.400">{error}</Text>}
-    </Box>
+    </FormControl>
   );
 };
 

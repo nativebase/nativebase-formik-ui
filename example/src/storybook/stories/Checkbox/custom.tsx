@@ -8,7 +8,7 @@ import {
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormControl, FormErrorMessage, FormLabel } from 'native-base';
+import { Heading, FormControl } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -34,17 +34,19 @@ export default function () {
         <Box>
           <Heading>Custom Checkbox using FormControl</Heading>
           <FormControl mt={4} isRequired isInvalid={errors.tnc}>
-            <FormLabel>Custom Label</FormLabel>
+            <FormControl.Label>Custom Label</FormControl.Label>
             <Checkbox name="tnc" mt={4}>
               <Text mx={2}>Terms and Conditions</Text>
             </Checkbox>
-            <FormErrorMessage>{errors.tnc}</FormErrorMessage>
+            <FormControl.ErrorMessage>{errors.tnc}</FormControl.ErrorMessage>
           </FormControl>
           <FormControl>
             <Checkbox name="newsletter" mt={4}>
               <Text mx={2}>Subscribe to Our Newsletter</Text>
             </Checkbox>
-            <FormErrorMessage>{errors.newsletter}</FormErrorMessage>
+            <FormControl.ErrorMessage>
+              {errors.newsletter}
+            </FormControl.ErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

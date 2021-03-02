@@ -2,60 +2,16 @@ import { Input, IInputProps } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import React, { FC } from 'react';
 import type { BaseProps, LayoutProps } from '../../props';
+import { getLayoutProps } from '../../../utils';
 import { FormControl } from '../../form-control';
 type InputProps = BaseProps & LayoutProps & { inputProps?: IInputProps };
 
 export const InputControl: FC<InputProps> = (props: InputProps) => {
-  const {
-    name,
-    label,
-    inputProps,
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-    ...rest
-  } = props;
-  const layoutProps = {
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-  };
+  const { name, label, inputProps, ...rest } = props;
+
   const [field] = useField(name);
   const { handleChange, handleBlur, setFieldTouched }: any = useFormikContext();
+  const [layoutProps, remainingProps] = getLayoutProps(rest);
   const defaultProps = { mt: 2 };
   return (
     <FormControl name={name} label={label} {...layoutProps}>
@@ -63,7 +19,7 @@ export const InputControl: FC<InputProps> = (props: InputProps) => {
         value={field.value}
         {...inputProps}
         {...defaultProps}
-        {...rest}
+        {...remainingProps}
         onChangeText={handleChange(name)}
         onBlur={() => {
           setFieldTouched(name);

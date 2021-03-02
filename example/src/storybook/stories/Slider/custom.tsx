@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   Slider,
   SubmitButton,
   ResetButton,
@@ -11,7 +8,7 @@ import {
   Text,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormControl, FormLabel, FormErrorMessage } from 'native-base';
+import { Heading, FormControl } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -35,17 +32,17 @@ export default function () {
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Rate NativeBase V3 Formik Integration (0-10) 😬</Heading>
+          <Heading>Rate NativeBase-Formik-UI (0-10) 😬</Heading>
           <Text>You have rated us {Math.floor(values.rating)}</Text>
           <FormControl isInvalid={errors.rating}>
-            <FormLabel>Slider Label</FormLabel>
+            <FormControl.Label>Slider Label</FormControl.Label>
             <Slider name="rating" colorScheme="cyan" min={0} max={10}>
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
+              <Slider.Track>
+                <Slider.FilledTrack />
+              </Slider.Track>
+              <Slider.Thumb />
             </Slider>
-            <FormErrorMessage>{errors.rating}</FormErrorMessage>
+            <FormControl.ErrorMessage>{errors.rating}</FormControl.ErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

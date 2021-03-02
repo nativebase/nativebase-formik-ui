@@ -1,32 +1,13 @@
-import { Slider as NBSlider, ISliderProps } from 'native-base';
-import { useField, useFormikContext } from 'formik';
-import React, { FC, ReactNode } from 'react';
-import type { BaseProps } from '../../props';
+import SliderMain from './Slider';
+import type { SliderComponentType } from './type';
+import { Slider as NBSlider } from 'native-base';
 
-import { SliderTrack, SliderFilledTrack, SliderThumb } from 'native-base';
+let SliderTemp: any = SliderMain;
+SliderTemp.Thumb = NBSlider.Thumb;
+SliderTemp.Track = NBSlider.Track;
+SliderTemp.FilledTrack = NBSlider.FilledTrack;
 
-type SliderProps = BaseProps & {
-  sliderProps?: ISliderProps;
-  children: ReactNode;
-};
+// To add typings
+const Slider = SliderTemp as SliderComponentType;
 
-export const Slider: FC<SliderProps> = (props: SliderProps) => {
-  const { name, children, sliderProps, ...rest } = props;
-  const [field] = useField(name);
-  const { setFieldValue } = useFormikContext();
-
-  return (
-    <NBSlider
-      defaultValue={field.value}
-      onChange={(v: any) => {
-        setFieldValue(name, v);
-      }}
-      {...sliderProps}
-      {...rest}
-    >
-      {children}
-    </NBSlider>
-  );
-};
-export { SliderTrack, SliderFilledTrack, SliderThumb };
-export default Slider;
+export { Slider };

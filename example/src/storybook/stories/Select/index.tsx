@@ -8,5 +8,5 @@ import Custom from './custom';
 storiesOf('Select', module)
   .addDecorator(withKnobs)
   .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic Select Example', () => <Basic />)
-  .add('Custom FormControl Select Example', () => <Custom />);
+  .add('Basic SelectControl', () => <Basic />)
+  .add('Custom Select with FormControl', () => <Custom />);

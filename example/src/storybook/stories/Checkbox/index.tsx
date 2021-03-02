@@ -8,5 +8,5 @@ import Custom from './custom';
 storiesOf('Checkbox', module)
   .addDecorator(withKnobs)
   .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic Checkbox Example', () => <Basic />)
-  .add('Custom FormControl Checkbox Example', () => <Custom />);
+  .add('Basic CheckboxControl', () => <Basic />)
+  .add('Custom Checkbox with FormControl', () => <Custom />);

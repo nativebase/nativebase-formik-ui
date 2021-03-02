@@ -1,18 +1,8 @@
 import React from 'react';
-import { Flex, NativeBaseProvider } from 'native-base';
+import { Center, NativeBaseProvider } from 'native-base';
 
 function MyWrapper({ children }: any) {
-  return (
-    <Flex
-      px={4}
-      height="100%"
-      width="100%"
-      justifyContent="center"
-      alignItems="center"
-    >
-      {children}
-    </Flex>
-  );
+  return <Center flex={1}>{children}</Center>;
 }
 
 export default ({ children }: any) => {
