@@ -10,7 +10,7 @@ import {
   Text,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading, FormControl, FormErrorMessage, FormLabel } from 'native-base';
+import { Heading, FormControl } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -34,11 +34,11 @@ export default function () {
         <Box mt={4}>
           <Heading>Let's Try to Know You More.</Heading>
           <FormControl mt={4} isRequired isInvalid={errors.color}>
-            <FormLabel>What's your faviourate Color ?</FormLabel>
+            <FormControl.Label>What's your favourite Color ?</FormControl.Label>
             <RadioGroup
               mt={2}
               name="color"
-              label="What's your faviourate Color ?"
+              label="What's your favourite Color ?"
             >
               <HStack space={4}>
                 <Radio value="#ff0000">
@@ -55,7 +55,7 @@ export default function () {
                 </Radio>
               </HStack>
             </RadioGroup>
-            <FormErrorMessage>{errors.color}</FormErrorMessage>
+            <FormControl.ErrorMessage>{errors.color}</FormControl.ErrorMessage>
           </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

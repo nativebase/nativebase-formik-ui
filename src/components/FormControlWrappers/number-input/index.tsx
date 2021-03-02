@@ -13,6 +13,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from 'native-base';
+import { getLayoutProps } from '../../../utils';
 
 export type NumberInputProps = BaseProps & {
   numberInputProps?: INumberInputProps;
@@ -30,51 +31,10 @@ export const NumberInputControl: FC<NumberInputProps> = (
     children,
     numberInputProps,
     numberInputFieldProps,
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
     ...rest
   } = props;
-  const layoutProps = {
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-  };
   const [field, { error }] = useField(name);
+  const [layoutProps, remainingProps] = getLayoutProps(rest);
   const { handleChange } = useFormikContext();
   const defaultProps = { mt: 2 };
 
@@ -82,12 +42,16 @@ export const NumberInputControl: FC<NumberInputProps> = (
     <FormControl name={name} label={label} {...layoutProps}>
       <NBNumberInput
         value={field.value}
-        onChange={handleChange(name)}
         {...defaultProps}
         {...numberInputProps}
-        {...rest}
+        {...remainingProps}
+        handleChange={() => handleChange(name)}
       >
-        <NumberInputField isInvalid={!!error} {...numberInputFieldProps} />
+        <NumberInputField
+          isInvalid={!!error}
+          // onChange={}
+          {...numberInputFieldProps}
+        />
         {children}
       </NBNumberInput>
     </FormControl>

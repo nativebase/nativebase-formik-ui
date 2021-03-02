@@ -8,5 +8,5 @@ import Custom from './custom';
 storiesOf('TextArea', module)
   .addDecorator(withKnobs)
   .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic TextArea Example', () => <Basic />)
-  .add('Custom FormControl TextArea Example', () => <Custom />);
+  .add('Basic TextAreaControl ', () => <Basic />)
+  .add('Custom TextArea with FormControl', () => <Custom />);

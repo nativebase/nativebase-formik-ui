@@ -3,6 +3,7 @@ import { useField, useFormikContext } from 'formik';
 import React, { FC, ReactNode } from 'react';
 import type { BaseProps, LayoutProps } from '../../props';
 import { FormControl } from '../../form-control';
+import { getLayoutProps } from '../../../utils';
 export type CheckboxControlProps = BaseProps & {
   checkBoxProps?: ICheckboxProps;
   children: ReactNode;
@@ -12,58 +13,12 @@ export type CheckboxControlProps = BaseProps & {
 export const CheckboxControl: FC<CheckboxControlProps> = (
   props: CheckboxControlProps
 ) => {
-  const {
-    name,
-    label,
-    children,
-    checkBoxProps,
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-    ...rest
-  } = props;
-  const layoutProps = {
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-  };
+  const { name, label, children, checkBoxProps, ...rest } = props;
+
   const { setFieldValue, setFieldTouched, handleBlur } = useFormikContext();
   const [field, { error }] = useField(name);
   const isChecked = field.value;
+  const [layoutProps, remainingProps] = getLayoutProps(rest);
   const defaultProps = { mt: 2 };
   return (
     <FormControl name={name} label={label} {...layoutProps}>
@@ -80,7 +35,7 @@ export const CheckboxControl: FC<CheckboxControlProps> = (
         }}
         {...defaultProps}
         {...checkBoxProps}
-        {...rest}
+        {...remainingProps}
       >
         {children}
       </Checkbox>

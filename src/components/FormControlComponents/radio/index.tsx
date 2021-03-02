@@ -1,4 +1,4 @@
-import { RadioGroup as NBRadioGroup, IRadioGroupProps } from 'native-base';
+import type { IRadioGroupProps } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import React, { FC, ReactNode } from 'react';
 import type { BaseProps } from '../../props';
@@ -18,14 +18,14 @@ export const RadioGroup: FC<RadioGroupProps> = (props: RadioGroupProps) => {
   };
 
   return (
-    <NBRadioGroup
+    <Radio.Group
       value={field.value}
       onChange={handleChange}
       {...radioGroupProps}
       {...rest}
     >
       {children}
-    </NBRadioGroup>
+    </Radio.Group>
   );
 };
 export { Radio, HStack, VStack, Stack };

@@ -5,8 +5,8 @@ import Wrapper from '../Wrapper';
 import Basic from './basic';
 import Custom from './custom';
 
-storiesOf('Slider', module)
+storiesOf('PintInput', module)
   .addDecorator(withKnobs)
   .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic SliderControl', () => <Basic />)
-  .add('Custom Slider with FormControl', () => <Custom />);
+  .add('Basic PintInput', () => <Basic />)
+  .add('Custom FormControl PintInput', () => <Custom />);

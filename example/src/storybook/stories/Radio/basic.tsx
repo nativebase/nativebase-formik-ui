@@ -36,7 +36,7 @@ export default function () {
           <RadioGroupControl
             mt={4}
             name="color"
-            label="What's your faviourate Color ?"
+            label="What's your favourite Color ?"
           >
             <HStack space={4}>
               <Radio value="#ff0000">

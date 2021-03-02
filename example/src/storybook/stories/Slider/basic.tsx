@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
+  Slider,
   SliderControl,
   SubmitButton,
   ResetButton,
@@ -35,7 +33,7 @@ export default function () {
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Rate NativeBase V3 Formik Integration (0-10) 😬</Heading>
+          <Heading>Rate NativeBase-Formik-UI (0-10) 😬</Heading>
           <Text>You have rated us {Math.floor(values.rating)}</Text>
           <SliderControl
             name="rating"
@@ -45,10 +43,10 @@ export default function () {
             min={0}
             max={10}
           >
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
+            <Slider.Track>
+              <Slider.FilledTrack />
+            </Slider.Track>
+            <Slider.Thumb />
           </SliderControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>

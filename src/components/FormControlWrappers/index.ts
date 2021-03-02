@@ -5,4 +5,5 @@ export * from './radio';
 export * from './select';
 export * from './slider';
 export * from './switch';
+export * from './pin-input';
 export * from './textarea';

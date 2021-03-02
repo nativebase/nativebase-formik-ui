@@ -1,22 +1,17 @@
 import React from 'react';
 import {
-  NumberInputControl,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  PinInput,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
-import { Heading } from 'native-base';
+import { Heading, FormControl } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  age: Yup.number()
-    .min(18, ({ min }) => `Age must be at least ${min} years old`)
-    .required('Please specify your age, it is important.'),
+  otp: Yup.string().required('Please specify your otp, it is important.'),
 });
 
 export default function () {
@@ -27,20 +22,27 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        age: 0,
+        otp: '',
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
+      enablereinitialize
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Let's check if you are eligible.</Heading>
-          <NumberInputControl mt={4} name="age" label="Age ?">
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInputControl>
+          <Heading>Confirm Your Identity</Heading>
+          <FormControl mt={4} isInvalid={errors.otp}>
+            <FormControl.Label>
+              Please enter the OTP. Trust me , I won't steal anything 😉 .
+            </FormControl.Label>
+            <PinInput mt={2} name="otp">
+              <PinInput.Field />
+              <PinInput.Field />
+              <PinInput.Field />
+              <PinInput.Field />
+            </PinInput>
+            <FormControl.ErrorMessage>{errors.otp}</FormControl.ErrorMessage>
+          </FormControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

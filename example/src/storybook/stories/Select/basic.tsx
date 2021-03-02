@@ -33,7 +33,7 @@ export default function () {
         <Box mt={4}>
           <Heading>
             {values.language === ''
-              ? 'Please Tell Your Faviorate Programming Language'
+              ? 'Please Tell Your Favourite Programming Language'
               : 'You said you love ' + values.language + ' 👌🏻'}
           </Heading>
           <SelectControl

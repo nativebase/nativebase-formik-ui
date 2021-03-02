@@ -3,63 +3,18 @@ import { useField, useFormikContext } from 'formik';
 import React, { FC } from 'react';
 import type { BaseProps } from '../../props';
 import { FormControl } from '../../form-control';
+import { getLayoutProps } from '../../../utils';
 
 export type SwitchControlProps = BaseProps & { switchProps?: ISwitchProps };
 
 export const SwitchControl: FC<SwitchControlProps> = (
   props: SwitchControlProps
 ) => {
-  const {
-    name,
-    label,
-    switchProps,
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-    ...rest
-  } = props;
-  const layoutProps = {
-    m,
-    margin,
-    mt,
-    marginTop,
-    mb,
-    marginBottom,
-    mr,
-    marginRight,
-    ml,
-    marginLeft,
-    mx,
-    marginX,
-    my,
-    marginY,
-    position,
-    right,
-    left,
-    bottom,
-    top,
-    isRequired,
-  };
+  const { name, label, switchProps, ...rest } = props;
   const { setFieldValue } = useFormikContext();
   const [field, { error }] = useField(name);
   const defaultProps = { mt: 2 };
+  const [layoutProps, remainingProps] = getLayoutProps(rest);
 
   return (
     <FormControl name={name} label={label} {...layoutProps}>
@@ -71,7 +26,7 @@ export const SwitchControl: FC<SwitchControlProps> = (
           setFieldValue(name, !field.value);
         }}
         {...defaultProps}
-        {...rest}
+        {...remainingProps}
         {...switchProps}
       />
     </FormControl>

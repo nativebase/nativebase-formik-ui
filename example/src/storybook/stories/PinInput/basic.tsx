@@ -1,9 +1,7 @@
 import React from 'react';
 import {
-  NumberInputControl,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  PinInputControl,
+  PinInput,
   SubmitButton,
   ResetButton,
   Box,
@@ -14,9 +12,9 @@ import { Heading } from 'native-base';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  age: Yup.number()
-    .min(18, ({ min }) => `Age must be at least ${min} years old`)
-    .required('Please specify your age, it is important.'),
+  otp: Yup.string().required(
+    'Please specify your otp, it is required to proceed forward.'
+  ),
 });
 
 export default function () {
@@ -27,20 +25,20 @@ export default function () {
   return (
     <Formik
       initialValues={{
-        age: 0,
+        otp: '',
       }}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
       {({ values, errors }) => (
         <Box mt={4}>
-          <Heading>Let's check if you are eligible.</Heading>
-          <NumberInputControl mt={4} name="age" label="Age ?">
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInputControl>
+          <Heading>Verify your Phone Number</Heading>
+          <PinInputControl mt={4} name="otp" label="Enter Your Otp" isRequired>
+            <PinInput.Field />
+            <PinInput.Field />
+            <PinInput.Field />
+            <PinInput.Field />
+          </PinInputControl>
           <Box pb={4} />
           <ButtonGroup spacing={6}>
             <SubmitButton colorScheme="teal">Next</SubmitButton>

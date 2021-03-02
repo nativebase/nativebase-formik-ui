@@ -1,9 +1,6 @@
 import {
   FormControl as NBFormControl,
   IFormControlProps as NBFormControlProps,
-  FormErrorMessage,
-  FormLabel,
-  FormHelperText,
 } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import React, { FC } from 'react';
@@ -19,10 +16,12 @@ export const FormControl: FC<FormControlProps> = (props: FormControlProps) => {
 
   return (
     <NBFormControl isInvalid={!!error} isDisable={isSubmitting} {...rest}>
-      {label && <FormLabel>{label}</FormLabel>}
+      {label && <NBFormControl.Label>{label}</NBFormControl.Label>}
       {children}
-      {helper && <FormHelperText>{helper}</FormHelperText>}
-      {error && <FormErrorMessage>{error}</FormErrorMessage>}
+      {helper && <NBFormControl.HelperText>{helper}</NBFormControl.HelperText>}
+      {error && (
+        <NBFormControl.ErrorMessage>{error}</NBFormControl.ErrorMessage>
+      )}
     </NBFormControl>
   );
 };
