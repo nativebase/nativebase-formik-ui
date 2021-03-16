@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  PinInput,
   SubmitButton,
   ResetButton,
   Box,
   ButtonGroup,
+  PinInput,
 } from '@native-base/formik-ui';
 import { Formik } from 'formik';
 import { Heading, FormControl } from 'native-base';

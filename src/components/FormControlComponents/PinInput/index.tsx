@@ -6,6 +6,6 @@ let PinInputTemp: any = PinInputMain;
 PinInputTemp.Field = NBPinInput.Field;
 
 // To add typings
-let PinInput = PinInputTemp as PinInputComponentType;
+const PinInput = PinInputTemp as PinInputComponentType;
 
 export { PinInput };

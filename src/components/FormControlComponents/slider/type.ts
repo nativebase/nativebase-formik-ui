@@ -6,7 +6,7 @@ export type SliderProps = BaseProps & {
   sliderProps?: ISliderProps;
   children: ReactNode;
 };
-export type SliderComponentType = SliderProps & {
+export type SliderComponentType = ((props: SliderProps) => JSX.Element) & {
   Thumb: React.MemoExoticComponent<(props: IBoxProps) => JSX.Element>;
   Track: React.MemoExoticComponent<(props: IBoxProps) => JSX.Element>;
   FilledTrack: React.MemoExoticComponent<(props: IBoxProps) => JSX.Element>;
