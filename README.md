@@ -79,7 +79,7 @@ export default function () {
 
 ```bash
 # Using Yarn
-yarn add native-base/formik-ui
+yarn add @native-base/formik-ui
 
 # Using NPM
 npm i @native-base/formik-ui
