@@ -1,184 +1,163 @@
-# Contributing
+# Contributing to NativeBase Formik UI
 
-We want this community to be friendly and respectful to each other. Please follow it in all your interactions with the project.
+We'd love for you to contribute to our source code and to make NativeBase Formik UI even better than it is
+today! Here are some guidelines we'd like you to follow:
 
-## Development workflow
+* [Code of Conduct](#coc)
+* [Ways to Contribute](#wtc)
+* [Questions and Problems](#question)
+* [Issues and Bugs](#issue)
+* [Feature Requests](#feature)
+* [Issue Submission Guidelines](#submit)
+* [Setting Up Development Environment ](#dev-env)
+* [Pull Request Submission Guidelines](#submit-pr)
+* [Improving Documentation](#docs)
 
-To get started with the project, run `yarn` in the root directory to install the required dependencies for each package:
+## <a name="coc"></a> Code of Conduct
 
-```sh
-yarn
-```
+Help us keep NativeBase Formik UI open and inclusive. Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-While developing, you can run the [example app](/example/) to test your changes.
+## <a name="wtc"></a> Ways to Contribute
 
-To start the packager:
+If you are eager to start contributing code right away, you can go through [NativeBase Formik UI Bugs](https://github.com/nativebase/nativebase-formik-ui/issues?q=is%3Aopen+is%3Aissue+label%3Abug) that contain bugs.
 
-```sh
-yarn example start
-```
+There are other ways you can contribute without writing a single line of code. Here are a few things you can do to help out:
 
-To run the example app on Android:
+1. **Replying and handling open issues.** We get a lot of issues every day, and some of them may lack necessary information. You can help out by guiding people through the process of filling out the issue template, asking for clarifying information, or pointing them to existing issues that match their description of the problem.
+2. **Reviewing pull requests for the docs.** Reviewing [documentation updates](https://github.com/nativebase/website/pulls?q=is%3Aopen+is%3Apr+label%3Anativebase-formik-ui) can be as simple as checking for spelling and grammar. If you encounter situations that can be explained better in the docs, click **Edit** at the bottom left of most docs pages to get started with your own contribution.
+3. **Help people write test plans.** Some pull requests sent to the main repository may lack a proper test plan. These help reviewers understand how the change was tested, and can speed up the time it takes for a contribution to be accepted.
 
-```sh
-yarn example android
-```
+Each of these tasks is highly impactful, and maintainers will greatly appreciate your help.
 
-To run the example app on iOS:
+## <a name="requests"></a> Questions, Bugs, Features
 
-```sh
-yarn example ios
-```
+### <a name="question"></a> Got a Question or Problem?
 
-Make sure your code passes TypeScript and ESLint. Run the following to verify:
+Do not open issues for general support questions as we want to keep GitHub issues for bug reports
+and feature requests. You've got much better chances of getting your question answered on dedicated
+support platforms, the best being [Stack Overflow](http://stackoverflow.com/questions/tagged/native-base).
 
-```sh
-yarn typescript
-yarn lint
-```
+Stack Overflow is a much better place to ask questions since:
 
-To fix formatting errors, run the following:
+- there are thousands of people willing to help on Stack Overflow
+- questions and answers stay available for public viewing so your question / answer might help
+  someone else
+- Stack Overflow's voting system assures that the best answers are prominently visible.
 
-```sh
-yarn lint --fix
-```
+To save your and our time, we will systematically close all issues that are requests for general
+support and redirect people to the section you are reading right now.
 
-Remember to add tests for your change if possible. Run the unit tests by:
+### <a name="issue"></a> Found an Issue or Bug?
 
-```sh
-yarn test
-```
+If you find a bug in the source code, you can help us by submitting an issue to our
+[GitHub Repository](https://github.com/nativebase/nativebase-formik-ui/issues). Even better, you can submit a Pull Request with a fix.
 
-To edit the Objective-C files, open `example/ios/NativebaseFormikUiExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > nativebase-formik-ui`.
+**Please see the [Submission Guidelines](#submit) below.**
 
-To edit the Kotlin files, open `example/android` in Android studio and find the source files at `nativebaseformikui` under `Android`.
+### <a name="feature"></a> Missing a Feature?
 
-### Commit message convention
+You can request a new feature by submitting an issue to our [GitHub Repository](https://github.com/nativebase/nativebase-formik-ui/issues).
 
-We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:
+If you would like to implement a new feature then consider what kind of change it is:
 
-- `fix`: bug fixes, e.g. fix crash due to deprecated method.
-- `feat`: new features, e.g. add new method to the module.
-- `refactor`: code refactor, e.g. migrate from class components to hooks.
-- `docs`: changes into documentation, e.g. add usage example for the module..
-- `test`: adding or updating tests, e.g. add integration tests using detox.
-- `chore`: tooling changes, e.g. change CI config.
+* **Major Changes** that you wish to contribute to the project should be discussed first in an
+  [GitHub issue](https://github.com/nativebase/nativebase-formik-ui/issues) that clearly outlines the changes and benefits of the feature.
+* **Small Changes** can directly be crafted and submitted to the [GitHub Repository](https://github.com/nativebase/nativebase-formik-ui)
+  as a Pull Request. See the section about [Contributing Code](#submit-pr).
 
-Our pre-commit hooks verify that your commit message matches this format when committing.
+## <a name="submit"></a> Issue Submission Guidelines
+Before you submit your issue search the archive, maybe your question was already answered.
 
-### Linting and tests
+If your issue appears to be a bug, and hasn't been reported, open a new issue. Help us to maximize
+the effort we can spend fixing issues and adding new features, by not reporting duplicate issues.
 
-[ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/)
+The "[new issue](https://github.com/nativebase/nativebase-formik-ui/issues/new)" form contains a number of prompts that you should fill out to
+make it easier to understand and categorize the issue.
 
-We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint](https://eslint.org/) with [Prettier](https://prettier.io/) for linting and formatting the code, and [Jest](https://jestjs.io/) for testing.
+In general, providing the following information will increase the chances of your issue being dealt
+with quickly:
 
-Our pre-commit hooks verify that the linter and tests pass when committing.
+* **Issue Description** - if an error is being thrown a non-minified stack trace helps
+* **Motivation for or Use Case** - explain why this is a bug for you
+* **NativeBase Formik UI Version(s)** - is it a regression?
+* **Browsers and Operating System** - is this a problem with all browsers or only specific ones?
+* **Reproduce the Error** - provide a live example (using [expo snack](https://snack.expo.io/) or an unambiguous set of steps.
+* **Related Issues** - has a similar issue been reported before?
+* **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
+  causing the problem (line of code or commit)
 
-### Scripts
+## <a name="dev-env"></a> Setting Up your Development Environment
 
-The `package.json` file contains various scripts for common tasks:
+- Fork this repository.
 
-- `yarn bootstrap`: setup project by installing all dependencies and pods.
-- `yarn typescript`: type-check files with TypeScript.
-- `yarn lint`: lint files with ESLint.
-- `yarn test`: run unit tests with Jest.
-- `yarn example start`: start the Metro server for the example app.
-- `yarn example android`: run the example app on Android.
-- `yarn example ios`: run the example app on iOS.
+- Clone your fork of NativeBase:
 
-### Sending a pull request
+  ```git
+  git clone git@github.com:${YOUR_USERNAME}/nativebase-formik-ui.git
+  ```
 
-> **Working on your first pull request?** You can learn how from this _free_ series: [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github).
+- Navigate to NativeBase Formik UI
 
-When you're sending a pull request:
+  ```
+  cd nativebase-formik-ui/
+  ```
 
-- Prefer small pull requests focused on one change.
-- Verify that linters and tests are passing.
-- Review the documentation to make sure it looks good.
-- Follow the pull request template when opening a pull request.
-- For pull requests that change the API or implementation, discuss with maintainers first by opening an issue.
+- Install dependencies:
 
-## Code of Conduct
+  ```bash
+  yarn
+  ```
 
-### Our Pledge
+- Move over to the TestBed Example App and install the dependencies :
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+  ```bash
+  cd example
+  yarn
+  ```
 
-We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+- Navigate back to your app:
 
-### Our Standards
+  ```bash
+  cd ..
+  ```
 
-Examples of behavior that contributes to a positive environment for our community include:
+- Start the Example App:
 
-- Demonstrating empathy and kindness toward other people
-- Being respectful of differing opinions, viewpoints, and experiences
-- Giving and gracefully accepting constructive feedback
-- Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
-- Focusing on what is best not just for us as individuals, but for the overall community
+  ```bash
+  yarn example start
+  ```
 
-Examples of unacceptable behavior include:
+  - To start app directly on Web
+    ```bash
+    yarn example web
+    ```
+  - To start app directly on IOS
+    ```bash
+    yarn example ios
+    ```
+  - To start app directly on Android
+    ```bash
+    yarn example android
+    ```
 
-- The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-- Trolling, insulting or derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-- Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+and start making the changes.
 
-### Enforcement Responsibilities
+## <a name="submit-pr"></a> Contributing Code
 
-Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.
+Code-level contributions to NativeBase Formik UI come in the form of [pull requests](https://help.github.com/en/articles/about-pull-requests). These are done by forking the repo and making changes locally. Directly in the repo, there is the [`Storybook Testbed` app](/example) that you can run on your device (or simulators) and use to test the changes you're making to NativeBase Formik UI source.
 
-Community leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.
+The process of proposing a change to NativeBase can be summarized as follows:
 
-### Scope
+1. Fork the NativeBase Formik UI repository and create your branch from `master`.
+2. Make the desired changes to the source. Use the `Storybook Testbed` app to test them out.
+3. If you've added code that should be tested, add tests.
+4. If you've changed APIs, update the documentation, which is available [here](https://github.com/nativebase/website/).
+5. Ensure the test suite passes, either locally or on CI once you opened a pull request.
+6. Make sure your code lints. To keep project away from disputes we make use of **ESLint**, which is really a handy linting tool that enforces strict coding styles and makes sure your files are free from dead code. Each module of NativeBase has bundled ESLint as a dev dependency and checks your code everytime you commit.
+7. Push the changes to your fork.
+8. Create a pull request to the NativeBase repository.
+9. Review and address comments on your pull request.
 
-This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
+If all goes well, your pull request will be merged. If it is not merged, maintainers will do their best to explain the reason why.
 
-### Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at [INSERT CONTACT METHOD]. All complaints will be reviewed and investigated promptly and fairly.
-
-All community leaders are obligated to respect the privacy and security of the reporter of any incident.
-
-### Enforcement Guidelines
-
-Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:
-
-#### 1. Correction
-
-**Community Impact**: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.
-
-**Consequence**: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
-
-#### 2. Warning
-
-**Community Impact**: A violation through a single incident or series of actions.
-
-**Consequence**: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.
-
-#### 3. Temporary Ban
-
-**Community Impact**: A serious violation of community standards, including sustained inappropriate behavior.
-
-**Consequence**: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.
-
-#### 4. Permanent Ban
-
-**Community Impact**: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.
-
-**Consequence**: A permanent ban from any sort of public interaction within the community.
-
-### Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 2.0,
-available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
-
-Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcement ladder](https://github.com/mozilla/diversity).
-
-[homepage]: https://www.contributor-covenant.org
-
-For answers to common questions about this code of conduct, see the FAQ at
-https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations.
